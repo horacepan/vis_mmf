@@ -124,7 +124,14 @@ def get_cmd_options(args):
 
   return options
 
+def setup_dirs():
+  for d in [DATA_DIR, PLOT_DIR]:
+    if not os.path.exists(d):
+      print 'doesnt yet exist', d
+      os.makedirs(d)
+
 if __name__ == '__main__':
+  setup_dirs()
   args = sys.argv[1:]
   options = get_cmd_options(args)
 
