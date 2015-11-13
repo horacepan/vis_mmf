@@ -14,7 +14,7 @@ GRAPH_FUNCS = {
   'path': nx.path_graph,
   'complete': nx.complete_graph,
   'barbell': nx.barbell_graph,
-  'grid': nx.grid_2d_graph,
+  'grid': nx.grid_2d_graph, # TODO: This currently doesn't work.
   'star': nx.star_graph,
   'wheel': nx.wheel_graph,
 } 
@@ -56,6 +56,7 @@ def mmffact(fname):
   Runs mmffact on the matrix specified by fname.
   '''
   call = '%s %s' %(MMFFACT, fname)
+  print 'Calling ', call
   os.system(call)
 
 
@@ -79,7 +80,7 @@ def make_graph(graph_type, num_vertices):
   assert graph_type in GRAPH_FUNCS, '%s is not a supported graph type' %graph_type
 
   if graph_type == 'barbell':
-    return GRAPH_FUNCS[graph_type](num_vertices, 0)
+    return GRAPH_FUNCS[graph_type](num_vertices, 1)
   if graph_type == 'grid':
     return GRAPH_FUNCS[graph_type](num_vertices, num_vertices)
   else:
@@ -142,7 +143,7 @@ if __name__ == '__main__':
   np.savetxt(DATA_DIR + lap_fname, dense_laplacian, fmt='%.2f',
              delimiter=' ', newline='\n')
 
-  mmffact(lap_fname)
+  mmffact(DATA_DIR + lap_fname)
   q_fname = make_name(options['type'], options['n'], ext='Q.dat')
   q_matrix = np.loadtxt(DATA_DIR + q_fname)
   title = make_name(options['type'], options['n'])
