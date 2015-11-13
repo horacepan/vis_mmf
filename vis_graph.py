@@ -27,26 +27,26 @@ LAYOUT_FUNCS = {
 }
 
 def draw_graph(graph, pos_dict, func, rownum=0, vmin=None, vmax=None, title=''):
-	'''
-	@param{networkx.graph} graph - a networkx graph object
-	@param{dict} pos_dict - dictionary mapping node(integer) to (x,y) coordinate
-	@param{dict} func - dictionary mapping node(integer) to function value
-  
+  '''
+  @param{networkx.graph} graph - a networkx graph object
+  @param{dict} pos_dict - dictionary mapping node(integer) to (x,y) coordinate
+  @param{dict} func - dictionary mapping node(integer) to function value
+
   Draws the graph via matplotlib and saves the figure.
-	'''
-	fig, ax = plt.subplots()
-	nx.draw_networkx_edges(graph,pos_dict,alpha=0.4)
-	nx.draw_networkx_nodes(graph,pos_dict,nodelist=func.keys(),
-												 node_size=[100 + 50*abs(i) for i in func.values()],
-												 node_color=func.values(),
-												 cmap=plt.cm.bwr,
-												 alpha=0.4,
-												 vmin=vmin,
-											   vmax=vmax
-												)
-	plt.axis('off')
-	plt.title('Visualizing wavelet %d' %rownum)
-	plt.savefig(PLOT_DIR + '%s_row_%d.png' %(title,rownum))
+  '''
+  fig, ax = plt.subplots()
+  nx.draw_networkx_edges(graph,pos_dict,alpha=0.4)
+  nx.draw_networkx_nodes(graph,pos_dict,nodelist=func.keys(),
+                         node_size=[100 + 50*abs(i) for i in func.values()],
+                         node_color=func.values(),
+                         cmap=plt.cm.bwr,
+                         alpha=0.4,
+                         vmin=vmin,
+                         vmax=vmax
+	)
+  plt.axis('off')
+  plt.title('Visualizing wavelet %d' %rownum)
+  plt.savefig(PLOT_DIR + '%s_row_%d.png' %(title,rownum))
 
 def mmffact(fname):
   '''
