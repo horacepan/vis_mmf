@@ -43,7 +43,7 @@ def draw_graph(graph, pos_dict, func, rownum=0, vmin=None, vmax=None, title=''):
                          alpha=0.4,
                          vmin=vmin,
                          vmax=vmax
-	)
+  )
   plt.axis('off')
   plt.title('Visualizing wavelet %d' %rownum)
   plt.savefig(PLOT_DIR + '%s_row_%d.png' %(title,rownum))
