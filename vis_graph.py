@@ -55,8 +55,11 @@ def mmffact(fname):
 
   Runs mmffact on the matrix specified by fname.
   '''
-  call = '%s %s' %(MMFFACT, fname)
-  print 'Calling ', call
+  nclusters = 1
+  nstages = 1
+  frac = 0.1
+  params = 'nclusters=%d nstages=%d frac=%f' %(nclusters, nstages, frac)
+  call = '%s %s %s' %(MMFFACT, fname, params)
   os.system(call)
 
 
